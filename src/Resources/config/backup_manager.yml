@@ -1,0 +1,15 @@
+bm_backup_manager:
+    database:
+        contao:
+            type: mysql
+            host: '%database_host%'
+            port: '%database_port%'
+            user: '%database_user%'
+            pass: '%database_password%'
+            database: '%database_name%'
+            ignoreTables: ['tl_version', 'tl_undo', 'tl_session', 'tl_search_index', 'tl_search', 'tl_log', 'tl_cron']
+
+    storage:
+        local:
+            type: Local
+            root: var/sql

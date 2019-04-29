@@ -1,0 +1,29 @@
+{
+  "name": "richardhj/contao-backup-manager",
+  "description": "Wrapper extension for backup-manager.",
+  "type": "contao-bundle",
+  "license": "LGPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Richard Henkenjohann",
+      "email": "richardhenkenjohann@googlemail.com",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/richardhj/contao-backup-manager/issues",
+    "source": "https://github.com/richardhj/contao-backup-manager"
+  },
+  "require": {
+    "php": "^7.1",
+    "contao/core-bundle": "^4.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Richardhj\\ContaoBackupManager\\": "src/"
+    }
+  },
+  "extra": {
+    "contao-manager-plugin": "Richardhj\\ContaoBackupManager\\ContaoManager\\Plugin"
+  }
+}
