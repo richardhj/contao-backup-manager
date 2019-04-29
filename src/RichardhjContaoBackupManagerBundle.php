@@ -11,7 +11,7 @@
  * @license   https://github.com/richardhj/contao-backup-manager/blob/master/LICENSE LGPL-3.0
  */
 
-namespace Richardhj\ContaoBackupManagerBundle;
+namespace Richardhj\ContaoBackupManager;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

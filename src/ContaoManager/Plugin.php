@@ -21,7 +21,7 @@ use Contao\ManagerPlugin\Bundle\Config\ConfigInterface;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 use Contao\ManagerPlugin\Config\ConfigPluginInterface;
 use Contao\ManagerPlugin\Dependency\DependentPluginInterface;
-use Richardhj\ContaoBackupManagerBundle\RichardhjContaoBackupManagerBundle;
+use Richardhj\ContaoBackupManager\RichardhjContaoBackupManagerBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
 /**

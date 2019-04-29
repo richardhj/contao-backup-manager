@@ -16,7 +16,13 @@
   },
   "require": {
     "php": "^7.1",
-    "contao/core-bundle": "^4.4"
+    "backup-manager/symfony": "^2.2",
+    "contao/core-bundle": "^4.4",
+    "symfony/config": "^3.3 || ^4.0",
+    "symfony/http-kernel": "^3.3 || ^4.0"
+  },
+  "require-dev": {
+    "contao/manager-plugin": "^2.7"
   },
   "autoload": {
     "psr-4": {
