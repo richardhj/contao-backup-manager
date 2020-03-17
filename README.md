@@ -16,9 +16,17 @@ $ composer require richardhj/contao-backup-manager
 
 ## Usage
 
-Run `php vendor/bin/contao-console backup-manager:backup contao local -c gzip --filename var/sql/backup.sql` to create a backup and `php vendor/bin/contao-console backup-manager:restore contao local backup.sql.gz -c gzip` to restore from a backup.
+### Database backup
 
-The dumps will saved under `var/sql/`.
+Run `php vendor/bin/contao-console backup-manager:backup contao local -c gzip --filename backup.sql` to create a backup
+
+The dump will saved within the `/backups` folder in the website root.
+
+### Database restore
+
+Run `php vendor/bin/contao-console backup-manager:restore contao local backup.sql.gz -c gzip` to restore from a backup.
+
+The database dump will be searched within the `/backups` folder in the website root.
 
 [ico-version]: https://img.shields.io/packagist/v/richardhj/contao-backup-manager.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-LGPL-brightgreen.svg?style=flat-square

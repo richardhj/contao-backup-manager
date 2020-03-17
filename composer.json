@@ -17,9 +17,9 @@
   "require": {
     "php": "^7.1",
     "backup-manager/symfony": "^2.2",
-    "contao/core-bundle": "^4.4",
-    "symfony/config": "^3.3 || ^4.0",
-    "symfony/http-kernel": "^3.3 || ^4.0"
+    "contao/core-bundle": "^4.9",
+    "symfony/config": "^4.4",
+    "symfony/http-kernel": "^4.4"
   },
   "require-dev": {
     "contao/manager-plugin": "^2.7"
