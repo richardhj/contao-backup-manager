@@ -20,14 +20,15 @@ use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\Config\ConfigInterface;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 use Contao\ManagerPlugin\Config\ConfigPluginInterface;
+use Contao\ManagerPlugin\Config\ContainerBuilder;
+use Contao\ManagerPlugin\Config\ExtensionPluginInterface;
 use Contao\ManagerPlugin\Dependency\DependentPluginInterface;
+use Ferienpass\CoreBundle\Security\Authentication\AuthenticationFailureHandler;
 use Richardhj\ContaoBackupManager\RichardhjContaoBackupManagerBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-/**
- * Contao Manager plugin.
- */
-class Plugin implements BundlePluginInterface, ConfigPluginInterface, DependentPluginInterface
+
+class Plugin implements BundlePluginInterface, ConfigPluginInterface, DependentPluginInterface, ExtensionPluginInterface
 {
 
     /**
@@ -57,5 +58,24 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface, DependentP
         return [
             'backup-manager/symfony',
         ];
+    }
+
+    public function getExtensionConfig($extensionName, array $extensionConfigs, ContainerBuilder $container)
+    {
+        if ('bm_backup_manager' !== $extensionName) {
+            return $extensionConfigs;
+        }
+
+        $config = $container->getExtensionConfig('contao_backup_manager');
+        $config = array_merge(...$config);
+
+        $config['storage'] = array_filter($config['storage'] ?? [], fn($input) => 'Encrypted' !== $input['type']);
+        if (empty($config['storage'])) {
+            return $extensionConfigs;
+        }
+
+        $extensionConfigs[0]['storage'] += $config['storage'];
+
+        return $extensionConfigs;
     }
 }

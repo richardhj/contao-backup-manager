@@ -13,9 +13,26 @@
 
 namespace Richardhj\ContaoBackupManager;
 
+use Richardhj\ContaoBackupManager\DependencyInjection\CompilerPass\ProvideFilesystemsPass;
+use Richardhj\ContaoBackupManager\DependencyInjection\ContaoBackupManagerExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class RichardhjContaoBackupManagerBundle extends Bundle
 {
+    public function build(ContainerBuilder $container)
+    {
+        parent::build($container);
 
+        $container->addCompilerPass(new ProvideFilesystemsPass());
+    }
+
+    public function getContainerExtension()
+    {
+        if (null === $this->extension) {
+            $this->extension = new ContaoBackupManagerExtension();
+        }
+
+        return $this->extension;
+    }
 }
