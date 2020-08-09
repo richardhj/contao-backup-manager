@@ -15,9 +15,12 @@
     "source": "https://github.com/richardhj/contao-backup-manager"
   },
   "require": {
-    "php": "^7.1",
-    "backup-manager/symfony": "^2.2",
+    "php": "^7.4",
+
     "contao/core-bundle": "^4.9",
+    "backup-manager/symfony": "^2.2",
+    "alextartan/flysystem-libsodium-adapter": "^1.0",
+
     "symfony/config": "^4.4",
     "symfony/http-kernel": "^4.4"
   },

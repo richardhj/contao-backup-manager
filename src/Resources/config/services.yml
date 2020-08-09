@@ -1,0 +1,3 @@
+services:
+  Richardhj\ContaoBackupManager\Filesystem\EncryptedFilesystem:
+    arguments: ['@backup_manager.filesystems']
