@@ -31,6 +31,13 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->arrayNode('purge')
+                    ->children()
+                        ->integerNode('max_files')->defaultNull()->end()
+                        ->integerNode('max_days')->defaultNull()->end()
+                    ->end()
+                ->end() // End purge
+
                 ->variableNode('storage')
                     ->validate()
                         ->always(function ($storageConfig) {

@@ -1,3 +1,11 @@
 services:
   Richardhj\ContaoBackupManager\Filesystem\EncryptedFilesystem:
     arguments: ['@backup_manager.filesystems']
+
+  Richardhj\ContaoBackupManager\Command\BackupCommand:
+    decorates: backup_manager.command.backup
+    arguments:
+      ['@backup_manager', '@Richardhj\ContaoBackupManager\Procedure\PurgeProcedure']
+
+  Richardhj\ContaoBackupManager\Procedure\PurgeProcedure:
+    arguments: ['@backup_manager.filesystems', '', '']
