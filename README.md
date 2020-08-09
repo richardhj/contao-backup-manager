@@ -21,7 +21,7 @@ $ composer require richardhj/contao-backup-manager
 
 Run `php vendor/bin/contao-console backup-manager:backup contao local -c gzip --filename backup.sql` to create a backup
 
-The dump will saved within the `/backups` folder in the website root.
+The dump will be saved within the `/backups` folder in the website root.
 
 #### Database restore
 
@@ -37,7 +37,8 @@ the example in the section below.
 
 ### File encryption
 
-You can encrypt the database dump before it will be uploaded on external storage. The encrypted file will be decrypted on-the-fly on restore.
+You can encrypt the database dump before it is uploaded on external storage. The encrypted file will be decrypted 
+on-the-fly on restore.
 
 Example configuration to write encrypted files on an external SFTP storage:
 
@@ -81,6 +82,22 @@ https://github.com/alextartan/flysystem-libsodium-adapter/blob/master/src/ChunkE
 
 Note: The encryption algorithm might change in the future (only in major version releases), so this feature is 
 not recommended for long data retention.
+
+### Data Retention
+
+You can configure the data retention:
+
+```yaml
+# /config/config.yml
+
+contao_backup_manager:
+  purge:
+    max_days: 14
+    max_files: 4
+```
+
+With this config, older files will be deleted automatically on the backup process.
+
 
 [ico-version]: https://img.shields.io/packagist/v/richardhj/contao-backup-manager.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-LGPL-brightgreen.svg?style=flat-square
