@@ -4,6 +4,7 @@ CHANGELOG
 v2.1.0
 ------
 * Add a filesystem decorator that encrypts backups on-the-fly ([#1])
+* Add config to automatically purge old backups ([#2])
 
 v2.0.0
 ------
@@ -16,3 +17,4 @@ v1.0.0
 * Initial release
 
 [#1]: https://github.com/richardhj/contao-backup-manager/pull/1
+[#2]: https://github.com/richardhj/contao-backup-manager/pull/2
