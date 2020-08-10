@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+v2.1.2
+------
+* Derive a 32-bytes key from the encryption password
+
+v2.1.1
+------
+* Fix a warning in the Extension configuration processign
+
 v2.1.0
 ------
 * Add a filesystem decorator that encrypts backups on-the-fly ([#1])
