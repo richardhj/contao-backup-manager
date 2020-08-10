@@ -98,6 +98,8 @@ contao_backup_manager:
 
 With this config, older files will be deleted automatically on the backup process.
 
+Important: There must not be any other files in the configured backup folder, because the files get purged regardless of their file type.
+
 
 [ico-version]: https://img.shields.io/packagist/v/richardhj/contao-backup-manager.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-LGPL-brightgreen.svg?style=flat-square
