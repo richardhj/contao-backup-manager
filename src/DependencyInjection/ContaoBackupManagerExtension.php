@@ -40,8 +40,8 @@ class ContaoBackupManagerExtension extends Extension
         $loader->load('services.yml');
 
         $container->getDefinition(PurgeProcedure::class)
-            ->replaceArgument(1, $config['purge']['max_days'])
-            ->replaceArgument(2, $config['purge']['max_files'])
+            ->replaceArgument(1, $config['purge']['max_days'] ?? null)
+            ->replaceArgument(2, $config['purge']['max_files'] ?? null)
         ;
     }
 }
