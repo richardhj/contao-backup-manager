@@ -24,10 +24,12 @@ use League\Flysystem\Filesystem as Flysystem;
 class EncryptedFilesystem implements Filesystem
 {
     private FilesystemProvider $filesystems;
+    private string $secret;
 
-    public function __construct(FilesystemProvider $filesystems)
+    public function __construct(FilesystemProvider $filesystems, string $secret)
     {
         $this->filesystems = $filesystems;
+        $this->secret      = $secret;
     }
 
     public function handles($type)
@@ -39,9 +41,16 @@ class EncryptedFilesystem implements Filesystem
     {
         $adapter = $this->filesystems->get($config['storage'])->getAdapter();
 
-        $encryption = Libsodium::factory($config['encryption_key'], 4096);
+        // Derive key from password using the same salt (kernel.secret) for each message
+        $key = sodium_crypto_pwhash(
+            SODIUM_CRYPTO_AEAD_CHACHA20POLY1305_KEYBYTES,
+            $config['encryption_key'],
+            substr($this->secret, 0, SODIUM_CRYPTO_PWHASH_SALTBYTES),
+            SODIUM_CRYPTO_PWHASH_OPSLIMIT_MODERATE,
+            SODIUM_CRYPTO_PWHASH_MEMLIMIT_MODERATE
+        );
 
-        $adapterDecorator = new EncryptionAdapterDecorator($adapter, $encryption);
+        $adapterDecorator = new EncryptionAdapterDecorator($adapter, Libsodium::factory($key, 4096));
 
         return new Flysystem($adapterDecorator);
     }

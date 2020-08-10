@@ -16,6 +16,7 @@
   },
   "require": {
     "php": "^7.4",
+    "ext-sodium": "*",
 
     "contao/core-bundle": "^4.9",
     "backup-manager/symfony": "^2.2",

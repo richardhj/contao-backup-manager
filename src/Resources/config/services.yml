@@ -1,6 +1,6 @@
 services:
   Richardhj\ContaoBackupManager\Filesystem\EncryptedFilesystem:
-    arguments: ['@backup_manager.filesystems']
+    arguments: ['@backup_manager.filesystems', '%kernel.secret%']
 
   Richardhj\ContaoBackupManager\Command\BackupCommand:
     decorates: backup_manager.command.backup
