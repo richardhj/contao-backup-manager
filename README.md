@@ -75,10 +75,7 @@ php vendor/bin/contao-console backup-manager:backup contao hetzner_enc -c gzip
 ```
 
 The filesystem utilizes [libsodium's Poly1305](https://libsodium.gitbook.io/doc/advanced/poly1305) algorithm to 
-encrypt the files on-the-fly.
-
-To check the implementation, please consult 
-https://github.com/alextartan/flysystem-libsodium-adapter/blob/master/src/ChunkEncryption/Libsodium.php
+encrypt the files on-the-fly. The implementation is adopted from the [official documentation](https://libsodium.gitbook.io/doc/secret-key_cryptography/secretstream). To check the implementation, check the [source code](https://github.com/alextartan/flysystem-libsodium-adapter/blob/master/src/ChunkEncryption/Libsodium.php). To encrypt the files, we use a "password" (`'%env(DB_ENCRYPTION_KEY)%'`) and "salt" (`'%env(kernel.secret)%'`) to derive a 32-byte encryption key from. The encryption key must not change in order to be able to decrypt the files. As we use the kernel secret for salting the encryption key, please make sure you have the kernel.secret defined in your parameters.yml.
 
 Note: The encryption algorithm might change in the future (only in major version releases), so this feature is 
 not recommended for long data retention.
