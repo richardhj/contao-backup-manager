@@ -2,7 +2,7 @@ bm_backup_manager:
   database:
     contao:
       dsn: '%env(DATABASE_URL)%'
-      ignoreTables: ['tl_version', 'tl_undo', 'tl_session', 'tl_search_index', 'tl_search_term', 'tl_search', 'tl_log', 'tl_cron_job']
+      ignoreTables: ['tl_undo', 'tl_session', 'tl_search_index', 'tl_search_term', 'tl_search', 'tl_log', 'tl_cron_job']
 
   storage:
     local:
