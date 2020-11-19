@@ -37,4 +37,4 @@ v1.0.0
 
 [#1]: https://github.com/richardhj/contao-backup-manager/pull/1
 [#2]: https://github.com/richardhj/contao-backup-manager/pull/2
-[#2]: https://github.com/richardhj/contao-backup-manager/pull/3
+[#3]: https://github.com/richardhj/contao-backup-manager/pull/3
