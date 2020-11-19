@@ -15,6 +15,7 @@ declare(strict_types=1);
 
 namespace Richardhj\ContaoBackupManager\DependencyInjection;
 
+use AlexTartan\Flysystem\Adapter\EncryptionAdapterDecorator;
 use Richardhj\ContaoBackupManager\Procedure\PurgeProcedure;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -34,14 +35,41 @@ class ContaoBackupManagerExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
-        $config        = $this->processConfiguration($configuration, $configs);
+
+        $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
+        $this->validateStorage($config['storage'] ?? []);
+
         $container->getDefinition(PurgeProcedure::class)
             ->replaceArgument(1, $config['purge']['max_days'] ?? null)
-            ->replaceArgument(2, $config['purge']['max_files'] ?? null)
-        ;
+            ->replaceArgument(2, $config['purge']['max_files'] ?? null);
+    }
+
+    /**
+     * We want to make sure the correct dependencies are installed for a storage.
+     */
+    private function validateStorage(array $config)
+    {
+        $requirements = [
+            'Encrypted' => [
+                'package' => 'alextartan/flysystem-libsodium-adapter:^1.0',
+                'test'    => EncryptionAdapterDecorator::class,
+            ],
+        ];
+
+        foreach ($config as $key => $storageConfig) {
+            $type = $storageConfig['type'];
+
+            if (!\array_key_exists($type, $requirements)) {
+                continue;
+            }
+
+            if (!class_exists($requirements[$type]['test'])) {
+                throw new \LogicException(sprintf('To use the configuration key "%s" in "contao_backup_manager.storage.%s.type" you need to install "%s"', $type, $key, $requirements[$type]['package']));
+            }
+        }
     }
 }

@@ -16,17 +16,18 @@
   },
   "require": {
     "php": "^7.4",
-    "ext-sodium": "*",
 
     "contao/core-bundle": "^4.9",
     "backup-manager/symfony": "^2.2",
-    "alextartan/flysystem-libsodium-adapter": "^1.0",
 
     "symfony/config": "^4.4",
     "symfony/http-kernel": "^4.4"
   },
   "require-dev": {
     "contao/manager-plugin": "^2.7"
+  },
+  "suggest": {
+    "alextartan/flysystem-libsodium-adapter": "Configure an encrypted data layer for remote filesystems"
   },
   "autoload": {
     "psr-4": {
