@@ -20,8 +20,8 @@
     "contao/core-bundle": "^4.9",
     "backup-manager/symfony": "^2.2",
 
-    "symfony/config": "^4.4",
-    "symfony/http-kernel": "^4.4"
+    "symfony/config": "^4.4 || ^5.0",
+    "symfony/http-kernel": "^4.4 || ^5.0"
   },
   "require-dev": {
     "contao/manager-plugin": "^2.7"
