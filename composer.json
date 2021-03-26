@@ -18,7 +18,7 @@
     "php": "^7.4",
 
     "contao/core-bundle": "^4.9",
-    "backup-manager/symfony": "^2.2",
+    "backup-manager/symfony": "^2.2 || ^3.0",
 
     "symfony/config": "^4.4 || ^5.0",
     "symfony/http-kernel": "^4.4 || ^5.0"
