@@ -15,7 +15,7 @@
     "source": "https://github.com/richardhj/contao-backup-manager"
   },
   "require": {
-    "php": "^7.4",
+    "php": ">=7.4",
 
     "contao/core-bundle": "^4.9",
     "backup-manager/symfony": "^2.2 || ^3.0",
