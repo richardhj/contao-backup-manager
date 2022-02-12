@@ -6,6 +6,36 @@
 
 This is a wrapper extension for <https://github.com/backup-manager/symfony>.
 
+> ⚠️ With the new backup command introduced in Contao 4.13, this bundle will not be maintained anymore. Please refer to <https://docs.contao.org/manual/en/cli/db-backups>.  
+> 
+> **Upgrade path:**
+>  Run `php vendor/bin/contao-console contao:backup:create` instead of `php vendor/bin/contao-console backup-manager:backup contao local -c gzip --filename backup.sql`.
+> 
+> **Upgrade path for using external storage:**
+> 1. Install the Flysytem adapter of interest, e.g., `composer require league/flysystem-sftp:^3.0`.
+> 2. Replace the backups storage in Contao as follows:
+>     1. Create a DI extension that implements the `ConfigureFilesystemInterface`
+>     2. Configure your extenal stoarge, e.g., SFTP storage:
+> ```php
+>    public function configureFilesystem(FilesystemConfiguration $config): void
+>    {
+>        $config
+>            ->mountAdapter('sftp', [
+>                'host' => '%env(DB_STORAGE_HOST)%',
+>                'port' => 22,
+>                'username' => '%env(DB_STORAGE_USERNAME)%',
+>                'password' => '%env(DB_STORAGE_PASSWORD)%',
+>                'root' => '/db',
+>                'timeout' => 10,
+>            ], 'backups', 'backups')
+>        ;
+>    }
+>  ```
+>    3. If you don't have an bundle nor extension, refer to <https://docs.contao.org/dev/guides/modify-container-at-compile-time> and replace the filesystem with `(new FilesystemConfig($container))->...`.
+>    
+> **Upgrade path for using encrypted external storage:**
+> - Configure an additional middleware flysystem adapter similar to [alextartan/flysystem-libsodium-adapter](https://github.com/alextartan/flysystem-libsodium-adapter) and use this filesystem as backup storage.
+
 ## Install
 
 Via Composer
